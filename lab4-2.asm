@@ -1,0 +1,18 @@
+	LXI H,8600H
+	MVI C,09H
+	MVI A,00H
+	MOV A,M
+back:	INX H
+	CMP M
+	JC HIGH
+continue:	DCR C
+	JNZ back
+	STA 8801H
+	HLT
+
+HIGH:	MOV A,M
+	JMP continue
+
+
+#ORG 8600H
+#DB 31H,32H,33H,34H,35H,36,37H,38H,39H,40H

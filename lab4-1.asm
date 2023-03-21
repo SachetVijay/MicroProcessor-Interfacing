@@ -1,0 +1,19 @@
+	LXI H,8600H
+	MVI B,0AH
+	MVI A,00H
+	MVI C,00H
+back:	ADD M
+	JC carry
+continue:	INX H
+	DCR B
+	JNZ back
+	STA 8801H
+	MOV A,C
+	STA 8800H
+	HLT
+
+carry:	INR C
+	JMP continue
+
+#ORG 8600H
+#DB 31H,32H,33H,34H,35H,36,37H,38H,39H,40H
